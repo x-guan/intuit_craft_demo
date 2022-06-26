@@ -1,0 +1,50 @@
+#######################################
+# run Elasticsearch
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+
+# settings for ngram
+curl -H 'Content-Type: application/json' -XPUT localhost:9200/log --data-binary @log-setting.json
+
+# test settings for ngram
+curl -H 'Content-Type: application/json' -XGET 'localhost:9200/log/_analyze?pretty' -d'{
+  "analyzer": "suspicious_pattern",
+  "text": "0123456789A"
+}'
+
+# schema
+curl -H 'Content-Type: application/json' -XPUT localhost:9200/log/_mapping --data-binary @log-mapping.json
+
+# index data
+curl -H 'Content-Type: application/json' -XPUT localhost:9200/log/_bulk --data-binary @log.json
+
+# delete indices
+curl -H 'Content-Type: application/json' -XDELETE localhost:9200/log
+
+#######################################
+# API 1: get IP address by suspicisou pattern
+curl -H 'Content-Type: application/json' -XGET 'localhost:9200/log/_search?pretty' -d'
+{
+  "query": {
+    "match": {
+      "error": "SUSPICIOUS"
+    }
+  },
+  "aggs": {
+    "log": {
+      "terms": {
+        "field": "ip"
+      }
+    }
+  }
+}'
+
+# API 2: get logs by IP address
+curl -H 'Content-Type: application/json' -XGET 'localhost:9200/log/_search?pretty' -d'
+{
+  "query": {
+    "match": {
+      "ip": "Loki"
+    }
+  }
+}'
+

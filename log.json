@@ -1,0 +1,12 @@
+{"index":{"_index":"log","_id":0}}
+{"ip":"Thor","timestamp":0,"access":"WHETHERISGOOD","error":"whetherisgood"}
+{"index":{"_index":"log","_id":1}}
+{"ip":"Iron Man","timestamp":1,"access":"TODAYISSATURDAY","error":"todayissaturday"}
+{"index":{"_index":"log","_id":2}}
+{"ip":"Loki","timestamp":2,"access":"THISISAsuspiciousRequest","error":"thisisaSUSPICIOUSrequest"}
+{"index":{"_index":"log","_id":3}}
+{"ip":"Xin","timestamp":3,"access":"GASPRICEWILLBEREDUCED","error":"gaspricewillbereduced"}
+{"index":{"_index":"log","_id":4}}
+{"ip":"Loki","timestamp":4,"access":"POTENTIALadversaryISDETECTED","error":"potentialADVERSARYisdetected"}
+{"index":{"_index":"log","_id":5}}
+

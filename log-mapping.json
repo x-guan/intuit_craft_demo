@@ -1,0 +1,14 @@
+{
+	"properties" : {
+		"ip": {"type": "keyword"},
+		"timestamp": {"type": "integer"},
+		"access": {
+			"type": "text",
+			"analyzer": "suspicious_pattern"
+		},
+		"error": {
+			"type": "text",
+			"analyzer": "suspicious_pattern"
+		}
+	}
+}
